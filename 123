@@ -1,0 +1,35 @@
+package main
+
+import "fmt"
+
+// Sword описывает меч.
+type Sword struct {
+    Power int
+}
+
+// Scroll описывает свиток.
+type Scroll struct {
+    Magic int
+}
+
+// опишите интерфейс Loot
+type Loot interface {
+    Apply()
+}
+// реализуйте метод Apply() для Sword
+func (sword Sword) Apply() {
+    fmt.Printf("Меч %d \n", sword.Power)
+}
+// реализуйте метод Apply() для Scroll
+func (scroll Scroll) Apply() {
+    fmt.Printf("Свиток %d\n", scroll.Magic)
+}
+func main() {
+    // создаём слайс интерфейса Loot, состоящий из элементов Sword и Scroll
+    loot := []Loot{Sword{Power: 50}, Scroll{Magic: 20}, Scroll{Magic: 70}}
+
+    // вызовите метод Apply() для каждого элемента
+    for _, v := range loot {
+        v.Apply()
+    }
+}
